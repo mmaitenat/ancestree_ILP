@@ -1,5 +1,5 @@
 calc_ancestry_graph <- function(F) {
-  combs <- combn(10, 2)
+  combs <- combn(ncol(F), 2)
   raw_connections <- apply(combs, 2, function(x) {
     mut1 <- x[1]
     mut2 <- x[2]
