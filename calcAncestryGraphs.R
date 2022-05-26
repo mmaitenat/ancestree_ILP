@@ -1,12 +1,11 @@
 calc_ancestry_graph <- function(F) {
   combs <- combn(ncol(F), 2)
-  raw_connections <- apply(combs, 2, function(x) {
+  perms <- cbind(combs, combs[c(2, 1),])
+  raw_connections <- apply(perms, 2, function(x) {
     mut1 <- x[1]
     mut2 <- x[2]
     if (all(F[, mut1] >= F[, mut2])) {
       return(c(x[1], x[2]))
-    } else if (all(F[, mut2] >= F[, mut1])) {
-      return(c(x[2], x[1]))
     } else {
       return(c(NA, NA))
     }
